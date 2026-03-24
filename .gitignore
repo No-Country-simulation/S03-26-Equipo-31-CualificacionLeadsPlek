@@ -1,0 +1,11 @@
+# Claude Code / AI agents
+.claude/
+CLAUDE.md
+AGENTS.md
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
