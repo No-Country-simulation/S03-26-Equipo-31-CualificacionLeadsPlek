@@ -1,0 +1,76 @@
+---
+import fondoHeader from "../assets/fondo-header.png";
+import cartera from "../assets/cartera.png";
+import shippingIcon from "../assets/shipping-fast.png";
+import boxesIcon from "../assets/boxes.png";
+---
+
+<section
+  class="relative mx-auto mt-8 overflow-visible"
+  style="width: 1420.5px; height: 522px;"
+>
+  <!-- Fondo -->
+  <div class="absolute inset-0 z-0">
+    <img src={fondoHeader.src} alt="" class="h-full w-full object-cover" />
+  </div>
+
+  <div
+    class="relative z-10 mx-auto flex h-full items-center"
+    style="width: 960px;"
+  >
+    <!-- Contenido izquierdo -->
+    <div style="width: 510px; height: 439px;">
+      <h1
+        class="font-afacad font-semibold text-white"
+        style="font-size: 48px; line-height: 40px;"
+      >
+        Regalos sostenibles para<br />compras mayoristas con<br />diseño que se
+        usa.
+      </h1>
+
+      <p
+        class="mt-5 font-work font-light"
+        style="font-size: 24px; line-height: 30px; color: #F9F9ED;"
+      >
+        Accesorios de piel certificada, pensados para<br />pedidos en cantidad y
+        con opciones de<br />personalización.
+      </p>
+
+      <!-- Tags -->
+      <div class="mt-5 flex font-afacad font-normal" style="gap: 24px; font-size: 24px; color: #F08EA0;">
+        <span class="flex items-center" style="gap: 8px;"><span>•</span><span>Para Marcas</span></span>
+        <span class="flex items-center" style="gap: 8px;"><span>•</span><span>Eventos</span></span>
+        <span class="flex items-center" style="gap: 8px;"><span>•</span><span>Reventa</span></span>
+      </div>
+
+      <!-- Beneficios -->
+      <div class="mt-1 flex flex-col gap-1">
+        <div class="flex items-center font-afacad font-medium text-white" style="width: 510px; gap: 16px; font-size: 32px;">
+          <img src={shippingIcon.src} alt="Envíos" style="width: 32px; height: 25.6px;" />
+          <span>Envíos a todo el país</span>
+        </div>
+        <div class="flex items-center font-afacad font-medium text-white" style="width: 510px; gap: 16px; font-size: 32px;">
+          <img src={boxesIcon.src} alt="Pedidos" style="width: 32px; height: 25.6px;" />
+          <span>Pedidos desde X unidades</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="#catalogo"
+        class="mt-2 inline-flex items-center justify-center border-2 border-plek-pink bg-white text-center font-work font-light transition-colors hover:opacity-90"
+        style="width: 409px; height: 48px; font-size: 24px; color: #6F212F;"
+      >
+        Explorar catálogo mayorista
+      </a>
+    </div>
+
+    <!-- Imagen cartera: posición absoluta, sobresale arriba y abajo del hero -->
+    <img
+      src={cartera.src}
+      alt="Cartera Plek"
+      class="absolute top-1/2 -translate-y-1/2 drop-shadow-2xl"
+      style="width: 412px; height: 582px; left: 548px;"
+    />
+  </div>
+</section>

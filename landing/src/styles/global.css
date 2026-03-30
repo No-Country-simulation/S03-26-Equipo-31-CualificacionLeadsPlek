@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+@theme {
+  --font-work: "Work Sans", sans-serif;
+  --font-afacad: "Afacad", sans-serif;
+  --color-plek-pink: #a0586c;
+  --color-plek-dark: #333333;
+  --color-plek-gray: #666666;
+  --color-plek-light: #f5f5f5;
+  --color-plek-rose: #c4899b;
+  --color-plek-green: #5a7a5a;
+}

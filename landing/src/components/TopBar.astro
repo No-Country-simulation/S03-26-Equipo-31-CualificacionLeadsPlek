@@ -1,0 +1,45 @@
+---
+import searchIcon from "../assets/search.png";
+import logoPlek from "../assets/logoPlek.png";
+import cartIcon from "../assets/cart.png";
+---
+
+<div class="w-full bg-white">
+  <div class="mx-auto flex items-center justify-between py-3" style="max-width: 1420.5px;">
+    <!-- Buscador -->
+    <div class="flex items-center border border-gray-400 px-3" style="width: 226px; height: 28px;">
+      <input
+        type="text"
+        placeholder="Buscar"
+        class="flex-1 bg-transparent text-sm text-plek-gray outline-none placeholder:text-plek-gray"
+      />
+      <img src={searchIcon.src} alt="Buscar" class="ml-2 h-4 w-4" />
+    </div>
+
+    <!-- Logo -->
+    <a href="/" class="absolute left-1/2 -translate-x-1/2">
+      <img src={logoPlek.src} alt="Plek - Origen Hecho Cartera" class="h-10" />
+    </a>
+
+    <!-- Carrito y sesión -->
+    <div class="flex flex-col items-end gap-1">
+      <div
+        class="flex items-center justify-center gap-2 border border-gray-400"
+        style="width: 226px; height: 28px; background-color: #535353;"
+      >
+        <img src={cartIcon.src} alt="Carrito" class="h-4 w-4" />
+        <span class="font-work text-[14px] font-normal uppercase tracking-wide text-white"
+          >Carrito (0) $0.00</span
+        >
+      </div>
+      <div
+        class="flex items-center justify-center gap-1 font-work text-[12px] font-normal uppercase"
+        style="width: 226px; height: 16px; color: #535353;"
+      >
+        <a href="#" class="hover:text-plek-pink">Crear una cuenta</a>
+        <span>|</span>
+        <a href="#" class="hover:text-plek-pink">Iniciar sesión</a>
+      </div>
+    </div>
+  </div>
+</div>
