@@ -10,3 +10,64 @@
   --color-plek-rose: #c4899b;
   --color-plek-green: #5a7a5a;
 }
+
+/* Section ProductUses */
+.ProdutsUses {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width:100%;
+  font-family: var(--font-work);
+  h3 {
+    font-family: var(--font-afacad);
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 32px;
+    font-weight: bold;
+    color: var(--color-plek-green);
+  }
+}
+.type-uses {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  width: 100%;
+  gap: 200px;
+  flex-wrap: wrap;
+}
+.uses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 2px var(--color-plek-green);
+  flex: 1;
+  max-width: 320px;
+  max-height: 500px;
+  img {
+    width: 289px;
+    height: 300px;
+    padding: 30px;
+    margin-bottom: 5px;
+  }
+  h4 {
+    font-family: var(--font-afacad);
+    font-size: 20px;
+    margin-bottom: 12px;
+    margin: 10px;
+    text-align: left;
+    color: var(--color-plek-green);
+  }
+  p {
+    font-family: var(--font-work);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+    margin: 10px;
+    color: var(--color-plek-gray);
+  }
+}
+
+/* Fin Section ProductUses */
