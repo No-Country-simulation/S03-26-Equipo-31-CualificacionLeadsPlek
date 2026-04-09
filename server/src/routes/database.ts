@@ -3,14 +3,12 @@ import { isConnected, connect } from "../config/db";
 
 const router = Router();
 
-// GET /api/database/health
 router.get("/health", async (_req: Request, res: Response) => {
   const connected = await isConnected();
   const status = connected ? 200 : 503;
   res.status(status).json({ connected });
 });
 
-// POST /api/database/connect
 router.post("/connect", async (_req: Request, res: Response) => {
   try {
     await connect();
@@ -22,3 +20,4 @@ router.post("/connect", async (_req: Request, res: Response) => {
 });
 
 export default router;
+
