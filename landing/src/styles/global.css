@@ -26,7 +26,7 @@
     margin-top: 20px;
     margin-bottom: 32px;
     font-weight: bold;
-    color: var(--color-plek-green);
+    color: #284829;
   }
 }
 .type-uses {
@@ -45,26 +45,26 @@
   border: solid 2px var(--color-plek-green);
   flex: 1;
   max-width: 320px;
-  max-height: 500px;
+  height: 450px;
+  margin-bottom: 15px;
   img {
     width: 289px;
     height: 300px;
-    padding: 30px;
+    padding: 20px;
     margin-bottom: 5px;
   }
   h4 {
     font-family: var(--font-afacad);
     font-size: 20px;
     margin-bottom: 12px;
-    margin: 10px;
-    text-align: left;
+    text-align: center;
     color: var(--color-plek-green);
   }
   p {
     font-family: var(--font-work);
     font-size: 14px;
     line-height: 1.5;
-    text-align: left;
+    text-align: center;
     margin: 10px;
     color: var(--color-plek-gray);
   }

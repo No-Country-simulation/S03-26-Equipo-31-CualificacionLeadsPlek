@@ -1,0 +1,71 @@
+---
+import "../styles/Faq.css";
+import "../styles/global.css";
+import whatsappIcon from "../assets/whatsapp.png";
+import truck from "../assets/truck.png";
+import lock from "../assets/lock.png";
+
+---
+
+
+<section class="faq-container">
+  <h2>Preguntas frecuentes</h2>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Hacen envíos a otros estados?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Respuesta de ejemplo.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Sus productos son de cuero real?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Nuestros productos están elaborados con cuero bovino real y sostenible, cuidadosamente seleccionado por su durabilidad y calidad de acabado. Trabajamos con procesos de producción responsables y aprovechamos los materiales de manera eficiente, en línea con nuestro compromiso con un diseño consciente.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuál es el pedido mínimo mayorista?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Respuesta de ejemplo.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuáles son los tiempos de entrega?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Respuesta de ejemplo.</p>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuál es la política de devolución?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Respuesta de ejemplo.</p>
+  </details>
+
+</section>
+
+<footer>
+    <img src={whatsappIcon.src} alt="whatsapp">
+    <div>
+        <span>¿Tienes dudas?¿Quieres preguntarnos algo?</span>
+        <p>Comunicate con nosotros por WhatsApp +524775818329</p>
+    </div>
+    <img src={truck.src} alt="truck" class="borderTruck">
+    <div class="withBorder">
+        <span>Recibe sin problema</span>
+        <p>Todos tus envíos con el mejor costo y tiempo de entrega</p>
+    </div>
+    <img src={lock.src} alt="lock">
+    <div>
+        <span>Compra con seguridad</span>
+        <p>Tus datos siempre protegidos</p>
+    </div>
+</footer> 

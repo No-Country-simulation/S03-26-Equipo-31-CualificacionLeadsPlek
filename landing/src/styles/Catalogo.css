@@ -1,0 +1,210 @@
+h2{
+    color: var(--color-plek-green);
+    font-weight: bold;
+    font-size: 32px;
+    font-family: var(--font-afacad);
+}
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h6{
+        color: var(--color-plek-green);
+        font-weight: bold;
+        font-family: var(--font-afacad);
+    }
+}
+.varios{
+    margin-top: 15px;
+background-color: rgba(120, 120, 120, 0.1);
+display: flex;
+height: 300px;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 20px;
+gap: 30px;
+}
+.motivos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p{
+        font-family: var(--font-work);;
+    }
+   
+}
+.motivo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 200px;
+    border: solid 2px var(--color-plek-green);
+    img{
+        position: absolute;
+        top: 1380px;
+    }
+}
+.greenButton{
+    background-color: #144E2A;
+    width: 300px;
+    position: absolute;
+    top: 1620px;
+    left: 570px;
+    color: white;
+    text-align: center;
+}
+.greenButton:hover {
+    background-color: green;
+    cursor: pointer;
+}
+/* Clase proposal */
+.proposal{
+    img{
+        width: 350px;
+        height: 300px;
+    }
+    background-color: #F9F9ED;
+    height: 350px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+    position: relative; 
+    padding: 40px;      
+    background: linear-gradient(
+        135deg, 
+        #F9F9ED calc(100% - 40px), 
+    
+    );
+
+    /* 2. Creamos el efecto del pliegue */
+    ::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70px;  /* Tamaño del pliegue */
+        height: 70px;
+        background-color: #F9F9ED; /* Color del "papel" */
+        
+        /* Dibujamos la línea diagonal y el fondo blanco del triángulo */
+        background: linear-gradient(
+            45deg, 
+            white 50%, 
+            #cccccc 50%, 
+            #cccccc 52%, 
+            
+        );
+   
+        box-shadow: -2px -2px 5px rgba(0,0,0,0.08);
+     
+
+ span{
+    color: var(--color-plek-gray);
+    font-size: 10px;
+}}}
+.proposal-bis{
+    display: flex;
+    
+    flex-direction: column;
+    text-align: left;
+    h3{
+        color: var(--color-plek-green);
+        font-size: 25px;
+        font-family: var(--font-afacad);
+        font-weight: bold;
+}
+span{
+    color: var(--color-plek-gray);
+    font-size: 12px;
+    font-family: var(--font-work);
+}
+p{
+    color: var(--color-plek-green);
+    font-family: var(--font-work);
+}
+}
+.buttonProposal{
+       background-color: #345931;
+    width: 250px;
+    text-align: center;
+    margin: 15px;
+    color: white;
+    font-family: var(--font-work);
+    
+}
+.buttonProposal:hover {
+    background-color: green;
+    cursor: pointer;
+}
+/* tutorial */
+.tutorial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(196, 164, 132, 0.5);
+    height: 400px;
+    margin-top: 20px;
+  
+    h3{
+        color: #916233;
+        font-family: var(--font-afacad);
+        
+        font-size: 32px;
+    }
+}
+.pasos{
+    margin: 20px;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 97%;
+    height: 350px;
+    p{
+        font-family: var(--font-work);
+        
+    }
+}
+.pasito{
+    margin: 20px;
+    background-color: #F9F9ED;
+    border: solid 1px #643C26;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    text-align: center;
+    width: 400px;
+    
+    p{
+        color: #BEA99E;
+        font-family: var(--font-work);
+        padding: 10px;
+    }
+    img{
+        width: 45px;
+        height: 45px;
+        position: absolute;
+        top: 1765px;
+    }
+    .title{
+     color: #916233;
+     font-weight: bold;
+     font-family: var(--font-work);
+     margin-top: 10px;
+    }
+}
