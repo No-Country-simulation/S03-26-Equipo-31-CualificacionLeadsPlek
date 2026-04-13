@@ -15,8 +15,8 @@ article{
     }
 }
 .varios{
-    margin-top: 15px;
-background-color: rgba(120, 120, 120, 0.1);
+margin-top: 15px;
+background-color: #F1D6AD;
 display: flex;
 height: 300px;
 flex-direction: row;
@@ -151,60 +151,115 @@ p{
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: rgba(196, 164, 132, 0.5);
-    height: 400px;
+    border: solid 1px brown;
+    padding: 60px 20px;
     margin-top: 20px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   
     h3{
         color: #916233;
         font-family: var(--font-afacad);
-        
         font-size: 32px;
+        margin-bottom: 40px;
     }
 }
+
 .pasos{
     margin: 20px;
     display: flex;
-    background-color: white;
-    border-radius: 10px;
-    flex-direction: row;
-    gap: 50px;
+    flex-direction: column;
+    gap: 30px;
     justify-content: center;
     align-items: center;
-    width: 97%;
-    height: 350px;
-    p{
-        font-family: var(--font-work);
-        
-    }
+    width: 100%;
+    max-width: 800px;
 }
+
 .pasito{
-    margin: 20px;
-    background-color: #F9F9ED;
-    border: solid 1px #643C26;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 220px;
-    text-align: center;
-    width: 400px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+    position: relative;
+    
+    img[alt^="Paso"] {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        border-radius: 50%;
+        background-color: #916233;
+        padding: 8px;
+        position: absolute;
+        top: -35px;
+        left: 0;
+        order: 1;
+    }
     
     p{
-        color: #BEA99E;
         font-family: var(--font-work);
-        padding: 10px;
+        margin: 0;
     }
-    img{
-        width: 45px;
-        height: 45px;
-        position: absolute;
-        top: 1765px;
-    }
-    .title{
-     color: #916233;
-     font-weight: bold;
-     font-family: var(--font-work);
-     margin-top: 10px;
+}
+
+.pasito > img[alt="Paso 1"],
+.pasito > img[alt="Paso 2"],
+.pasito > img[alt="Paso 3"] {
+    position: absolute;
+    top: 5px;
+    z-index: 1;
+    left: 100px;
+}
+
+.step-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+    width: 100%;
+    margin-left: 0;
+}
+
+.step-left {
+    background-color: #FFD580;
+    padding: 20px;
+    border-radius: 4px;
+    min-width: 250px;
+    text-align: center;
+    position: relative;
+    margin-top: 40px;
+}
+
+.step-left .title {
+    color: #593E31;
+    font-family: var(--font-work);
+    margin: 0;
+    font-size: 16px;
+}
+
+.step-arrow {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.step-right {
+    background-color: #f5f5f5;
+    border: 2px solid #916233;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: left;
+    min-width: 300px;
+    
+    p {
+        color: #916233;
+        font-family: var(--font-work);
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
     }
 }

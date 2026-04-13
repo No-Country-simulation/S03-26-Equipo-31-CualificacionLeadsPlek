@@ -1,0 +1,181 @@
+
+section {
+  margin: 50px;
+  background-image: url('../assets/fondoCatalogo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  width: 95%;
+  height: 600px;
+  justify-content: right;
+  
+  form {
+    color: white;
+    background-color: #00000080;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-work);
+    width: 400px;
+  }
+  
+  label {
+    text-align: left;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="submit"],
+  form input[type="reset"],
+  form select {
+    background-color: white;  
+    color: #333;  /* Cambié de white a #333 para que se lea */
+    width: 250px;           
+  }
+  
+  h1 {
+    font-family: var(--font-afacad);
+    font-size: 32px;
+    margin: 10px;
+  }
+  
+  .buttons {
+    font-family: var(--font-work);
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin-top: 15px;
+    width: 250px;
+    height: 40px;
+    
+    .submit {
+      background-color: #339458;
+      cursor: pointer;
+      color: white;
+      
+      &:hover {
+        background-color: lightgreen;
+      }
+    }
+    
+    .cancel {
+      background-color: white;
+      color: gray;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: rgb(175, 165, 165);
+      }
+    }
+  }
+  span{
+    font-size: 12px;
+  }
+}
+
+
+
+/* ESTILOS DEL CARTEL DE ÉXITO (MODAL) */
+
+
+
+
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+  h2{
+    font-family: var(--font-afacad);
+    font-weight: bold;
+    color: var(--green-main);
+  }
+  p{
+    font-family: var(--font-work);
+  }
+}
+
+.success-card-modal {
+  background-color: #f9f8f0; 
+ .success-content {
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+
+} 
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  border: 3px solid var(--green-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-main);
+  margin: 0 auto 25px;
+}
+
+.success-icon svg {
+  width: 40px;
+ border: 3px solid var(--green-main);
+  color: green;
+}
+
+.success-content h2 {
+  font-family: var(--font-afacad);
+  font-size: 32px;
+  color: #2d3e33;
+  margin: 0;
+}
+
+.success-content p {
+  font-family: var(--font-work);
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.success-footer {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.success-footer .btn-primary {
+  text-decoration: none;
+  display: inline-block;
+  background-color: #339458;
+  border-radius: 10px;
+  width: 200px;
+  color: white;
+}
+
+.success-footer .btn-secondary {
+  text-decoration: none;
+  display: inline-block;
+  background-color: gray;
+  border-radius: 10px;
+  width: 200px;
+  color: white;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}}

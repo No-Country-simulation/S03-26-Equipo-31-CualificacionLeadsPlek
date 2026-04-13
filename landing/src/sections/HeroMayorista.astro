@@ -1,8 +1,6 @@
 ---
 import fondoHeader from "../assets/fondo-header.png";
 import cartera from "../assets/cartera.png";
-// import shippingIcon from "../assets/shipping-fast.png";
-// import boxesIcon from "../assets/boxes.png";
 import girlOne from "../assets/Frame58.png";
 import girlTwo from "../assets/Frame59.png";
 import hands from "../assets/Manos.png";
@@ -27,26 +25,27 @@ import hands from "../assets/Manos.png";
         class="font-afacad font-semibold text-white"
         style="font-size: 48px; line-height: 40px;"
       >
-        Productos personalizados para empresas.
+        Menos productos genéricos. 
+Más marca, más uso, más impacto
       </h1>
 
       <p
         class="mt-5 font-work font-light"
         style="font-size: 24px; line-height: 30px; color: #F9F9ED;"
       >
-        Diseño sustentable, uso diario y personalización para marcas que quieren destacarse.
+        Diseño sustentable, productos duraderos y personalizados. Encuentra ejemplos en nuestra guía gratuita.
       </p>
 
 
 
       <!-- CTA -->
-      <a
-        href="#catalogo"
+      <button
+        onclick="window.open('/formulario', '_blank')"
         class="mt-2 inline-flex items-center justify-center border-2 border-plek-pink bg-white text-center font-work font-light transition-colors hover:opacity-90"
-        style="width: 409px; height: 48px; font-size: 24px; color: #6F212F;margin-top: 50px;"
+        style="width: 409px; height: 48px; font-size: 24px; color: #6F212F;margin-top: 50px; cursor: pointer;"
       >
         Quiero recibir la guía
-      </a>
+      </button>
     </div>
 
     <!-- Imagen cartera: posición absoluta, sobresale arriba y abajo del hero -->
@@ -60,23 +59,25 @@ import hands from "../assets/Manos.png";
 </section>
 <!-- Formas de usar estos productos -->
 <section class="ProdutsUses">
-  <h3>Formas de usar Plek en tu marca</h3>
+  <h3>El regalo que tu empresa necesita</h3>
   <div class="type-uses">
         <div class="uses">
           <img src={girlTwo.src} alt="chica-con-billetera"  />
-          <h4>El regalo que tu equipo va a presumir</h4>
-          <p>Convertimos el accesorio en un activo de comunicación. Presente en cada reunión, onboarding y punto de contacto con tu cliente.</p>
+          <h4>El regalo que tu equipo va a usar</h4>
+          <p>Productos que se usan todos los dias. Presentes en cada reunión, onboarding y contacto con tu cliente.</p>
         </div>
          <div class="uses">
           <img src={hands.src} alt="manos" />
           <h4>Hecho a tu medida, desde cero</h4>
-          <p>Elegís materiales, colores y terminaciones. Trabajamos codo a codo para crear una pieza que no existe en ningún otro lugar.</p>
+          <p>Trabajamos codo a codo para crear una pieza única para tu empresa.</p>
         </div>
         <div class="uses">
           <img src={girlOne.src} alt="chica-con-cartera" />
-          <h4>Diferenciación de marca</h4>
-          <p>Objetos que se usan todos los días y hacen que tu marca sea recordada.</p>
+          <h4>Distinción de marca</h4>
+          <p>Accesorios que comunican y hacen que tu empresa sea recordada.</p>
         </div>
        
+      </div>
+  </section>
       </div>
   </section>

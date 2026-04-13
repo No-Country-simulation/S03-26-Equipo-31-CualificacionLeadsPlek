@@ -1,0 +1,230 @@
+---
+import '../styles/formularioPedidos.css';
+import '../styles/global.css'
+import Layout from '../layouts/Layout.astro';
+---
+<Layout  title="Solicitá tu propuesta | Plek" >
+
+<section class="multi-step-wrapper">
+  <div class="form-container" id="formContainer">
+    
+    <div class="progress-bar" id="progressBar">
+      {[1, 2, 3, 4, 5].map((num) => (
+        <>
+          <div class="step-circle" data-step={num}>{num}</div>
+          {num < 5 && <div class="step-line" />}
+        </>
+      ))}
+    </div>
+
+    <form id="multiStepForm">
+      <div class="step-content active" data-step="1">
+        <h2>¿Para qué necesitas estos productos?</h2>
+        <div class="options-grid">
+          {["Onboarding de empleados", "Regalos para clientes", "Evento/Prensa", "Idealización", "Venta/Retail", "No estoy seguro"].map((text) => (
+            <label class="option-card">
+              <input type="radio" name="uso" value={text} required />
+              <span class="custom-radio"></span> {text}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="step-content" data-step="2">
+        <h2>¿Qué quieres transmitir con este regalo?</h2>
+               <div class="options-grid">
+          {["Profesionalismo", "Sustentabilidad", "No estoy seguro", "Innovación", "Exclusividad", "Regalos para clientes"].map((text) => (
+            <label class="option-card">
+              <input type="checkbox" name="regalo" value={text} required/>
+              <span class="custom-checkbox"></span> {text}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="step-content" data-step="3">
+        <h2>¿Te interesa algún producto en particular?</h2>
+                  <div class="options-grid">
+          {["Tarjeteros", "Carteras/Bolsos", "Porta Pasaporte", "Kits", "Necesito Recomendación"].map((text) => (
+            <label class="option-card">
+              <input type="checkbox" name="producto" value={text} required />
+              <span class="custom-checkbox"></span> {text}
+            </label>
+          ))}
+        </div>
+      </div>
+      <div class="step-content" data-step="4">
+        <h2>Características de tu pedido</h2>
+        <div class="selectDoble">
+          <div class="column">
+          <label for="cantidad">Cantidad estimada</label>
+          <select name="cantidad" id="cantidad" required>
+            <option value="" disabled selected>Seleccionar una opción</option>
+            <option value="uno">10-25</option>
+            <option value="dos">26-50</option>
+            <option value="tres">51-100</option>
+            <option value="cuatro">100 +</option>
+          </select>
+          </div>
+          <div class="column">
+          <label for="fecha">¿Para cuándo lo necesitas?</label>
+          <select name="fecha" id="fecha" required>
+            <option value="" disabled selected>Seleccionar una opción</option>
+            <option value="uno">Urgente</option>
+            <option value="dos">2 - 4 semanas</option>
+            <option value="tres">1 - 2 meses</option>
+            <option value="cuatro">Explorando opciones</option>
+          </select>
+          </div>
+        </div>
+        <div class="tripleCheckbox">
+          <label for="pregunta">¿Necesitas personalización?</label>
+               {["Sí", "No", "No estoy seguro"].map((text) => (
+                <div class="row-check">
+            <label class="option-card" >
+              
+              <input type="radio" name="personalizacion" value={text} required />
+              <span class="custom-radio"></span> {text}
+              
+            </label>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="step-content" data-step="5">
+        <h2>Tus datos de contacto</h2>
+      <div class="options-gridBis">
+        <div class="form-field">
+          <label>Nombre</label>
+          <input type="text" name="nombre" placeholder="Nombre" required/>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Email" required/>
+        </div>
+        <div class="form-field">
+          <label>Empresa</label>
+          <input type="text" name="empresa" placeholder="Empresa" required />
+        </div>
+        <div class="form-field">
+          <label>WhatsApp</label>
+          <input type="tel" name="whatsapp" placeholder="Tu código de país + Número" required pattern="[\+]?[0-9]{10,15}"/>
+        </div>
+      </div>
+        <label for="textoAbout">Cuéntano más sobre tu proyecto</label>
+        <textarea name="textoAbout" id="textoAbout" placeholder="Describe tu proyecto, objetivos, o cualquier detalle que consideres relevante." required></textarea>
+      </div>
+
+      <div class="step-content success-screen" data-step="6">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>¡Listo! Tu solicitud fue enviada</h2>
+        <p>Te contactaremos dentro de las próximas 24-48 hs. Mientras tanto, podés seguir explorando.</p>
+        <div class="success-footer">
+          <a href="/" class="btn-primary">Ir al Home</a>
+        </div>
+      </div>
+
+      <div class="form-footer" id="formFooter">
+        <button type="button" id="prevBtn" class="btn-secondary invisible">← Regresar</button>
+        <button type="button" id="nextBtn" class="btn-primary">Siguiente →</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const steps = document.querySelectorAll('.step-content');
+  const circles = document.querySelectorAll('.step-circle');
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const progressBar = document.getElementById('progressBar');
+  const formFooter = document.getElementById('formFooter');
+  const form = document.getElementById('multiStepForm');
+  
+  let currentStep = 1;
+
+  function isCurrentStepValid() {
+    const currentStepElement = document.querySelector(`.step-content[data-step="${currentStep}"]`);
+    if (!currentStepElement) return true;
+
+    const requiredFields = currentStepElement.querySelectorAll('[required]');
+    
+    for (let field of requiredFields) {
+      if (field.type === 'checkbox' || field.type === 'radio') {
+        // Para radios y checkboxes con el mismo nombre, verificar que al menos uno esté seleccionado
+        const fieldGroup = form.querySelectorAll(`[name="${field.name}"]`);
+        const isChecked = Array.from(fieldGroup).some(f => f.checked);
+        if (!isChecked) {
+          alert('Por favor completa todos los campos antes de avanzar');
+          return false;
+        }
+      } else if (field.type === 'select-one' || field.tagName === 'SELECT') {
+        // Para selects
+        if (!field.value) {
+          alert('Por favor completa todos los campos antes de avanzar');
+          return false;
+        }
+      } else {
+        // Para inputs de texto, email, textarea, etc.
+        if (!field.value.trim()) {
+          alert('Por favor completa todos los campos antes de avanzar');
+          return false;
+        }
+        // Validar patrón si existe
+        if (field.pattern) {
+          const regex = new RegExp(`^${field.pattern}$`);
+          if (!regex.test(field.value)) {
+            alert('Por favor ingresa un dato válido');
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  function updateUI() {
+    // Si llegamos al paso 6 (Éxito)
+    if (currentStep === 6) {
+      steps.forEach(s => s.classList.toggle('active', parseInt(s.dataset.step) === 6));
+      progressBar.style.display = 'none';
+      formFooter.style.display = 'none';
+      return;
+    }
+
+    // Navegación normal 1-5
+    steps.forEach(s => {
+      s.classList.toggle('active', parseInt(s.dataset.step) === currentStep);
+    });
+
+    circles.forEach(c => {
+      c.classList.toggle('active', parseInt(c.dataset.step) <= currentStep);
+    });
+
+    prevBtn.classList.toggle('invisible', currentStep === 1);
+    nextBtn.innerText = currentStep === 5 ? "Enviar propuesta" : "Siguiente →";
+  }
+
+  nextBtn?.addEventListener('click', () => {
+    if (currentStep <= 5 && isCurrentStepValid()) {
+      currentStep++;
+      updateUI();
+    }
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      updateUI();
+    }
+  });
+
+  // Inicialización
+  updateUI();
+</script>
+</Layout>
