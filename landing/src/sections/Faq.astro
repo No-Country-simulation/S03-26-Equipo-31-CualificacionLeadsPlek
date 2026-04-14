@@ -52,6 +52,24 @@ import lock from "../assets/lock.png";
 
 </section>
 
+<script>
+  // Comportamiento de acordeón: cerrar otros detalles al abrir uno
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', (event) => {
+      if (event.target.open) {
+        // Si se abre un detalle, cerrar todos los demás
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.open = false;
+          }
+        });
+      }
+    });
+  });
+</script>
+
 <footer>
     <img src={whatsappIcon.src} alt="whatsapp">
     <div>

@@ -1,13 +1,14 @@
 
 .faq-container {
   max-width: 420px;
-  height: 500px;
+  min-height: 500px;
   margin: 50px auto;
   padding: 40px;
   background: white;
   border: solid 1px var(--color-plek-gray);
   position: relative;
   font-family: var(--font-work);
+  overflow: hidden;
   p {
   margin-top: 10px;
   font-size: 13px;
@@ -84,6 +85,7 @@ summary::-webkit-details-marker {
 details[open] .arrow {
   transform: rotate(-135deg);
 }
+
 
 /* TEXTO */
 

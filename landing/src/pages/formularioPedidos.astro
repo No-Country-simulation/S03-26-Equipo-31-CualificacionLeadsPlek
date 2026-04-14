@@ -18,8 +18,11 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <form id="multiStepForm">
+      <div id="errorMessage" class="error-message" style="display: none; color: #d32f2f; background-color: #ffebee; padding: 12px; border-radius: 4px; margin-bottom: 16px; border-left: 4px solid #d32f2f;"></div>
+      
       <div class="step-content active" data-step="1">
-        <h2>¿Para qué necesitas estos productos?</h2>
+        <h2>¿Para qué necesitás estos productos?</h2>
+        <p class="required">Campos obligatorios *</p>
         <div class="options-grid">
           {["Onboarding de empleados", "Regalos para clientes", "Evento/Prensa", "Idealización", "Venta/Retail", "No estoy seguro"].map((text) => (
             <label class="option-card">
@@ -32,6 +35,7 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="step-content" data-step="2">
         <h2>¿Qué quieres transmitir con este regalo?</h2>
+        <p class="required">(Puede elegir hasta 2 opciones)</p>
                <div class="options-grid">
           {["Profesionalismo", "Sustentabilidad", "No estoy seguro", "Innovación", "Exclusividad", "Regalos para clientes"].map((text) => (
             <label class="option-card">
@@ -44,6 +48,7 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="step-content" data-step="3">
         <h2>¿Te interesa algún producto en particular?</h2>
+        <p class="required">(Puede elegir hasta 2 opciones)</p>
                   <div class="options-grid">
           {["Tarjeteros", "Carteras/Bolsos", "Porta Pasaporte", "Kits", "Necesito Recomendación"].map((text) => (
             <label class="option-card">
@@ -55,9 +60,10 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="step-content" data-step="4">
         <h2>Características de tu pedido</h2>
+        <p class="required">Campos obligatorios *</p>
         <div class="selectDoble">
           <div class="column">
-          <label for="cantidad">Cantidad estimada</label>
+          <label for="cantidad">Cantidad estimada*</label>
           <select name="cantidad" id="cantidad" required>
             <option value="" disabled selected>Seleccionar una opción</option>
             <option value="uno">10-25</option>
@@ -67,10 +73,10 @@ import Layout from '../layouts/Layout.astro';
           </select>
           </div>
           <div class="column">
-          <label for="fecha">¿Para cuándo lo necesitas?</label>
+          <label for="fecha">¿Para cuándo lo necesitas?*</label>
           <select name="fecha" id="fecha" required>
             <option value="" disabled selected>Seleccionar una opción</option>
-            <option value="uno">Urgente</option>
+            <option value="uno">Urgente(menos de 2 semanas)</option>
             <option value="dos">2 - 4 semanas</option>
             <option value="tres">1 - 2 meses</option>
             <option value="cuatro">Explorando opciones</option>
@@ -78,7 +84,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <div class="tripleCheckbox">
-          <label for="pregunta">¿Necesitas personalización?</label>
+          <label for="pregunta">¿Necesitás personalización?*</label>
                {["Sí", "No", "No estoy seguro"].map((text) => (
                 <div class="row-check">
             <label class="option-card" >
@@ -94,26 +100,27 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="step-content" data-step="5">
         <h2>Tus datos de contacto</h2>
+        <p class="required">Campos obligatorios *</p>
       <div class="options-gridBis">
         <div class="form-field">
-          <label>Nombre</label>
+          <label>Nombre*</label>
           <input type="text" name="nombre" placeholder="Nombre" required/>
         </div>
         <div class="form-field">
-          <label>Email</label>
+          <label>Email*</label>
           <input type="email" name="email" placeholder="Email" required/>
         </div>
         <div class="form-field">
-          <label>Empresa</label>
+          <label>Empresa*</label>
           <input type="text" name="empresa" placeholder="Empresa" required />
         </div>
         <div class="form-field">
           <label>WhatsApp</label>
-          <input type="tel" name="whatsapp" placeholder="Tu código de país + Número" required pattern="[\+]?[0-9]{10,15}"/>
+          <input type="tel" name="whatsapp" placeholder="Tu código de país + Número" pattern="[\+]?[0-9]{10,15}"/>
         </div>
       </div>
-        <label for="textoAbout">Cuéntano más sobre tu proyecto</label>
-        <textarea name="textoAbout" id="textoAbout" placeholder="Describe tu proyecto, objetivos, o cualquier detalle que consideres relevante." required></textarea>
+        <label for="textoAbout">Cuéntanos más sobre tu proyecto</label>
+        <textarea name="textoAbout" id="textoAbout" placeholder="Describe tu proyecto, objetivos, o cualquier detalle que consideres relevante."></textarea>
       </div>
 
       <div class="step-content success-screen" data-step="6">
@@ -125,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
         <h2>¡Listo! Tu solicitud fue enviada</h2>
         <p>Te contactaremos dentro de las próximas 24-48 hs. Mientras tanto, podés seguir explorando.</p>
         <div class="success-footer">
-          <a href="/" class="btn-primary">Ir al Home</a>
+          <a href="/" class="btn-primary">Ir al Inicio</a>
         </div>
       </div>
 
@@ -148,7 +155,20 @@ import Layout from '../layouts/Layout.astro';
   
   let currentStep = 1;
 
+  const errorMessage = document.getElementById('errorMessage');
+  
+  function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideError() {
+    errorMessage.style.display = 'none';
+  }
+
   function isCurrentStepValid() {
+    hideError();
     const currentStepElement = document.querySelector(`.step-content[data-step="${currentStep}"]`);
     if (!currentStepElement) return true;
 
@@ -160,26 +180,26 @@ import Layout from '../layouts/Layout.astro';
         const fieldGroup = form.querySelectorAll(`[name="${field.name}"]`);
         const isChecked = Array.from(fieldGroup).some(f => f.checked);
         if (!isChecked) {
-          alert('Por favor completa todos los campos antes de avanzar');
+          showError('Por favor completa todos los campos antes de avanzar');
           return false;
         }
       } else if (field.type === 'select-one' || field.tagName === 'SELECT') {
         // Para selects
         if (!field.value) {
-          alert('Por favor completa todos los campos antes de avanzar');
+          showError('Por favor completa todos los campos antes de avanzar');
           return false;
         }
       } else {
         // Para inputs de texto, email, textarea, etc.
         if (!field.value.trim()) {
-          alert('Por favor completa todos los campos antes de avanzar');
+          showError('Por favor completa todos los campos antes de avanzar');
           return false;
         }
         // Validar patrón si existe
         if (field.pattern) {
           const regex = new RegExp(`^${field.pattern}$`);
           if (!regex.test(field.value)) {
-            alert('Por favor ingresa un dato válido');
+            showError('Por favor ingresa un dato válido');
             return false;
           }
         }
@@ -223,6 +243,25 @@ import Layout from '../layouts/Layout.astro';
       updateUI();
     }
   });
+
+  // Limitar checkboxes a máximo 2 opciones en pasos 2 y 3
+  const limitCheckboxes = (fieldName, maxSelected = 2) => {
+    const checkboxes = form.querySelectorAll(`input[name="${fieldName}"][type="checkbox"]`);
+    
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        const checkedCount = form.querySelectorAll(`input[name="${fieldName}"][type="checkbox"]:checked`).length;
+        
+        if (checkedCount > maxSelected) {
+          checkbox.checked = false;
+          showError(`Puedes seleccionar máximo ${maxSelected} opciones`);
+        }
+      });
+    });
+  };
+
+  limitCheckboxes('regalo', 2);
+  limitCheckboxes('producto', 2);
 
   // Inicialización
   updateUI();
