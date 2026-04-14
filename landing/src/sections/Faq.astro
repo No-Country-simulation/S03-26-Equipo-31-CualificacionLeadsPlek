@@ -1,0 +1,89 @@
+---
+import "../styles/Faq.css";
+import "../styles/global.css";
+import whatsappIcon from "../assets/whatsapp.png";
+import truck from "../assets/truck.png";
+import lock from "../assets/lock.png";
+
+---
+
+
+<section class="faq-container">
+  <h2>Preguntas frecuentes</h2>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Hacen envíos a otros estados?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Sí, realizamos envíos a todo el país. El costo y tiempo de entrega se calculan automáticamente al ingresar el código postal durante el proceso de compra, permitiendo al cliente elegir la opción más conveniente según su ubicación.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Sus productos son de cuero real?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Nuestros productos están elaborados con cuero bovino real y sostenible, cuidadosamente seleccionado por su durabilidad y calidad de acabado. Trabajamos con procesos de producción responsables y aprovechamos los materiales de manera eficiente, en línea con nuestro compromiso con un diseño consciente.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuál es el pedido mínimo mayorista?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>El pedido mínimo mayorista se define a partir de una cantidad base de unidades o un monto mínimo de compra, pensado para garantizar eficiencia en producción y personalización. Este requisito puede variar según el tipo de producto o nivel de personalización solicitado, por lo que se recomienda solicitar una propuesta para recibir condiciones específicas.</p>
+  </details>
+
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuáles son los tiempos de entrega?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Los tiempos de entrega dependen del tipo de pedido. Para productos estándar, el despacho suele realizarse dentro de los 3 a 5 días hábiles. En el caso de pedidos personalizados o mayoristas, el tiempo puede extenderse entre 10 y 20 días hábiles, considerando el proceso de diseño, producción y control de calidad.</p>
+  </details>
+  <details class="faq-item">
+    <summary>
+      <span>¿Cuál es la política de devolución?</span>
+      <span class="arrow"></span>
+    </summary>
+    <p>Ofrecemos garantía de 30 días por defectos de fabricación y permitimos solicitar cambios o reparaciones contactando dentro de los primeros 5 días posteriores a la compra, enviando el número de pedido y fotografías del producto para su evaluación.Los cambios o reparaciones solo aplican si el producto no presenta mal uso y debe devolverse en su empaque original dentro de los plazos indicados. En caso de defectos, la marca cubre los costos de envío; si se elige un producto de mayor valor, se paga la diferencia, y si es menor, no se realizan reembolsos, debiendo utilizar el saldo en otros artículos. No se aceptan devoluciones de dinero y todas las solicitudes están sujetas a validación previa.</p>
+  </details>
+
+</section>
+
+<script>
+  // Comportamiento de acordeón: cerrar otros detalles al abrir uno
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', (event) => {
+      if (event.target.open) {
+        // Si se abre un detalle, cerrar todos los demás
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.open = false;
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<footer>
+    <img src={whatsappIcon.src} alt="whatsapp">
+    <div>
+        <span>¿Tienes dudas?¿Quieres preguntarnos algo?</span>
+        <p>Comunicate con nosotros por WhatsApp +524775818329</p>
+    </div>
+    <img src={truck.src} alt="truck" class="borderTruck">
+    <div class="withBorder">
+        <span>Recibe sin problema</span>
+        <p>Todos tus envíos con el mejor costo y tiempo de entrega</p>
+    </div>
+    <img src={lock.src} alt="lock">
+    <div>
+        <span>Compra con seguridad</span>
+        <p>Tus datos siempre protegidos</p>
+    </div>
+</footer> 

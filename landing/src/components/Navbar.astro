@@ -1,0 +1,33 @@
+---
+const navLinks = [
+  { label: "INICIO", href: "#" },
+  { label: "PRODUCTOS", href: "#" },
+  { label: "QUIÉNES SOMOS", href: "#" },
+  { label: "BLOG", href: "#" },
+  { label: "LINEA CORPORATIVA", href: "#", active: true },
+  { label: "POLÍTICA DE DEVOLUCIÓN", href: "#" },
+  { label: "CONTACTO", href: "#" },
+  { label: "CÓMO COMPRAR", href: "#" },
+];
+---
+
+<nav class="w-full bg-white">
+  <div class="mx-auto flex items-center justify-between py-3" style="max-width: 1420.5px;">
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "font-work text-[14px] font-light uppercase transition-colors hover:text-plek-pink",
+            link.active ? "text-plek-pink" : "text-plek-dark",
+          ]}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+<div class="mx-auto" style="max-width: 1420.5px;">
+  <hr style="border-color: #E0E0E0;" />
+</div>

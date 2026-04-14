@@ -1,0 +1,124 @@
+
+.faq-container {
+  max-width: 420px;
+  min-height: 500px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border: solid 1px var(--color-plek-gray);
+  position: relative;
+  font-family: var(--font-work);
+  overflow: hidden;
+  p {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.5;
+  
+}
+}
+
+.faq-container::after {
+     content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;  /* Tamaño del pliegue */
+        height: 30px;
+        background-color: whitesmoke; /* Color del "papel" */
+        
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+        background: linear-gradient(
+            35deg, 
+            
+        );
+   
+        
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #3e5f3c;
+  font-family: var(--font-afacad);
+}
+
+/* ITEM */
+.faq-item {
+  border-top: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+/* SUMMARY */
+summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  color: #5c7a5c;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+/* Oculta flecha nativa */
+summary::-webkit-details-marker {
+  display: none;
+
+}
+
+/* Flechita */
+.arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #5c7a5c;
+  border-bottom: 2px solid #5c7a5c;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  margin-top: 5px;
+}
+
+/* Rotación cuando está abierto */
+details[open] .arrow {
+  transform: rotate(-135deg);
+}
+
+
+/* TEXTO */
+
+/* FOOTER */
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+    font-family: var(--font-work);
+    div{
+        display: flex;
+        gap: 10px;
+       flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        span{
+            color: var(--color-plek-gray);
+            font-weight: bold;
+        }
+        p{
+            font-size: 10px;
+            color: var(--color-plek-gray);
+        }
+    }
+    .withBorder{
+        padding: 10px;
+        border-right: solid 1px var(--color-plek-gray);
+}
+.borderTruck{
+    padding: 10px;
+    border-left: solid 1px var(--color-plek-gray);
+}
+}

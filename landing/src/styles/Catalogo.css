@@ -1,0 +1,265 @@
+h2{
+    color: var(--color-plek-green);
+    font-weight: bold;
+    font-size: 32px;
+    font-family: var(--font-afacad);
+}
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h6{
+        color: var(--color-plek-green);
+        font-weight: bold;
+        font-family: var(--font-afacad);
+    }
+}
+.varios{
+margin-top: 15px;
+background-color: #F1D6AD;
+display: flex;
+height: 300px;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+text-align: center;
+padding: 20px;
+gap: 30px;
+}
+.motivos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p{
+        font-family: var(--font-work);;
+    }
+   
+}
+.motivo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 200px;
+    border: solid 2px var(--color-plek-green);
+    img{
+        position: absolute;
+        top: 1380px;
+    }
+}
+.greenButton{
+    background-color: #144E2A;
+    width: 300px;
+    position: absolute;
+    top: 1620px;
+    left: 570px;
+    color: white;
+    text-align: center;
+}
+.greenButton:hover {
+    background-color: green;
+    cursor: pointer;
+}
+/* Clase proposal */
+.proposal{
+    img{
+        width: 350px;
+        height: 300px;
+    }
+    background-color: #F9F9ED;
+    height: 350px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+    position: relative; 
+    padding: 40px;      
+    background: linear-gradient(
+        135deg, 
+        #F9F9ED calc(100% - 40px), 
+    
+    );
+
+    /* 2. Creamos el efecto del pliegue */
+    ::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 70px;  /* Tamaño del pliegue */
+        height: 70px;
+        background-color: #F9F9ED; /* Color del "papel" */
+        
+        /* Dibujamos la línea diagonal y el fondo blanco del triángulo */
+        background: linear-gradient(
+            45deg, 
+            white 50%, 
+            #cccccc 50%, 
+            #cccccc 52%, 
+            
+        );
+   
+        box-shadow: -2px -2px 5px rgba(0,0,0,0.08);
+     
+
+ span{
+    color: var(--color-plek-gray);
+    font-size: 10px;
+}}}
+.proposal-bis{
+    display: flex;
+    
+    flex-direction: column;
+    text-align: left;
+    h3{
+        color: var(--color-plek-green);
+        font-size: 25px;
+        font-family: var(--font-afacad);
+        font-weight: bold;
+}
+span{
+    color: var(--color-plek-gray);
+    font-size: 12px;
+    font-family: var(--font-work);
+}
+p{
+    color: var(--color-plek-green);
+    font-family: var(--font-work);
+}
+}
+.buttonProposal{
+       background-color: #345931;
+    width: 250px;
+    text-align: center;
+    margin: 15px;
+    color: white;
+    font-family: var(--font-work);
+    
+}
+.buttonProposal:hover {
+    background-color: green;
+    cursor: pointer;
+}
+/* tutorial */
+.tutorial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: solid 1px brown;
+    padding: 60px 20px;
+    margin-top: 20px;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  
+    h3{
+        color: #916233;
+        font-family: var(--font-afacad);
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+}
+
+.pasos{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+.pasito{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+    position: relative;
+    
+    img[alt^="Paso"] {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        border-radius: 50%;
+        background-color: #916233;
+        padding: 8px;
+        position: absolute;
+        top: -35px;
+        left: 0;
+        order: 1;
+    }
+    
+    p{
+        font-family: var(--font-work);
+        margin: 0;
+    }
+}
+
+.pasito > img[alt="Paso 1"],
+.pasito > img[alt="Paso 2"],
+.pasito > img[alt="Paso 3"] {
+    position: absolute;
+    top: 5px;
+    z-index: 1;
+    left: 100px;
+}
+
+.step-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
+    width: 100%;
+    margin-left: 0;
+}
+
+.step-left {
+    background-color: #FFD580;
+    padding: 20px;
+    border-radius: 4px;
+    min-width: 250px;
+    text-align: center;
+    position: relative;
+    margin-top: 40px;
+}
+
+.step-left .title {
+    color: #593E31;
+    font-family: var(--font-work);
+    margin: 0;
+    font-size: 16px;
+}
+
+.step-arrow {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+
+}
+
+.step-right {
+    background-color: #f5f5f5;
+    border: 2px solid #916233;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: left;
+    min-width: 300px;
+    
+    p {
+        color: #916233;
+        font-family: var(--font-work);
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+    }
+}
