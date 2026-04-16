@@ -6,55 +6,40 @@ import girlTwo from "../assets/Frame59.png";
 import hands from "../assets/Manos.png";
 ---
 
-<section
-  class="relative mx-auto mt-8 overflow-visible"
-  style="width: 1420px; height: 522px;"
->
+<section class="hero-mayorista-container">
   <!-- Fondo -->
-  <div class="absolute inset-0 z-0">
-    <img src={fondoHeader.src} alt="" class="h-full w-full object-cover" />
+  <div class="hero-mayorista-bg">
+    <img src={fondoHeader.src} alt="" />
   </div>
 
-  <div
-    class="relative z-10 mx-auto flex h-full items-center "
-    style="width: 960px;"
-  >
+  <div class="hero-mayorista-content">
     <!-- Contenido izquierdo -->
-    <div style="width: 700px; height: 439px;">
-      <h1
-        class="font-afacad font-semibold text-white"
-        style="font-size: 48px; line-height: 40px;"
-      >
+    <div class="hero-mayorista-text">
+      <h1>
         Menos productos genéricos. 
 Más marca, más uso, más impacto
       </h1>
 
-      <p
-        class="mt-5 font-work font-light"
-        style="font-size: 24px; line-height: 30px; color: #F9F9ED;"
-      >
+      <p>
         Diseño sustentable, productos duraderos y personalizados. Encuentra ejemplos en nuestra guía gratuita.
       </p>
-
-
 
       <!-- CTA -->
       <button
         onclick="window.open('/formulario', '_blank')"
-        class="mt-2 inline-flex items-center justify-center border-2 border-plek-pink bg-white text-center font-work font-light transition-colors hover:opacity-90"
-        style="width: 409px; height: 48px; font-size: 24px; color: #6F212F;margin-top: 50px; cursor: pointer;"
+        class="hero-mayorista-btn"
       >
         Quiero recibir la guía
       </button>
     </div>
 
     <!-- Imagen cartera: posición absoluta, sobresale arriba y abajo del hero -->
-    <img
-      src={cartera.src}
-      alt="Cartera Plek"
-      class="absolute top-1/2 -translate-y-1/2 drop-shadow-2xl"
-      style="width: 412px; height: 582px; left: 750px;"
-    />
+    <div class="hero-mayorista-image">
+      <img
+        src={cartera.src}
+        alt="Cartera Plek"
+      />
+    </div>
   </div>
 </section>
 <!-- Formas de usar estos productos -->

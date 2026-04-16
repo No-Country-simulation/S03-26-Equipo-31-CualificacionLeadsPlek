@@ -25,10 +25,18 @@
     font-family: var(--font-afacad);
     font-size: 32px;
     margin-top: 20px;
+    text-align: center;
     margin-bottom: 32px;
     font-weight: bold;
     color: #284829;
   }
+    /* @media (min-width: 480px) {
+
+  }
+
+  @media (min-width: 768px) {
+   
+  } */
 }
 .type-uses {
   display: flex;
@@ -72,3 +80,140 @@
 }
 
 /* Fin Section ProductUses */
+
+/* Hero Mayorista Responsive */
+.hero-mayorista-container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 2rem;
+  overflow: visible;
+  width: 100%;
+  height: auto;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    width: 1420px;
+    height: 522px;
+    padding: 0;
+  }
+}
+
+.hero-mayorista-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-mayorista-bg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-mayorista-content {
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 2rem 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    width: 960px;
+    height: 100%;
+    padding: 0;
+  }
+}
+
+.hero-mayorista-text {
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 768px) {
+    width: 700px;
+    height: 439px;
+  }
+}
+
+.hero-mayorista-text h1 {
+  font-family: var(--font-afacad);
+  font-weight: 600;
+  color: white;
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 48px;
+    line-height: 40px;
+  }
+}
+
+.hero-mayorista-text p {
+  font-family: var(--font-work);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 24px;
+  color: #f9f9ed;
+  margin-top: 1.25rem;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.hero-mayorista-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color-plek-pink);
+  background-color: white;
+  text-align: center;
+  font-family: var(--font-work);
+  font-weight: 300;
+  color: #6f212f;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  width: 100%;
+  max-width: 409px;
+  height: 48px;
+  font-size: 18px;
+  margin-top: 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    width: 409px;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.hero-mayorista-image {
+  position: absolute;
+  top: 50%;
+  left: 750px;
+  transform: translateY(-50%);
+  width: 412px;
+  height: 582px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.hero-mayorista-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.1));
+}
+/* Fin Hero Mayorista Responsive */

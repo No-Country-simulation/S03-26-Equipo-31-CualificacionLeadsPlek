@@ -11,14 +11,14 @@ const navLinks = [
 ];
 ---
 
-<nav class="w-full bg-white">
-  <div class="mx-auto flex items-center justify-between py-3" style="max-width: 1420.5px;">
+<nav class="w-full bg-white mt-2 sm:mt-3">
+  <div class="mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-3 py-2 sm:py-3 px-3 sm:px-4" style="max-width: 1420.5px;">
     {
       navLinks.map((link) => (
         <a
           href={link.href}
           class:list={[
-            "font-work text-[14px] font-light uppercase transition-colors hover:text-plek-pink",
+            "font-work text-[10px] sm:text-[12px] md:text-[14px] font-light uppercase transition-colors hover:text-plek-pink whitespace-nowrap",
             link.active ? "text-plek-pink" : "text-plek-dark",
           ]}
         >

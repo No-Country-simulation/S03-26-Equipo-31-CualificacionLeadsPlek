@@ -1,6 +1,7 @@
 ---
 import '../styles/formularioPedidos.css';
 import '../styles/global.css'
+//import 'intl-tel-input/build/css/intlTelInput.css';
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout  title="Solicitá tu propuesta | Plek" >
@@ -37,7 +38,7 @@ import Layout from '../layouts/Layout.astro';
         <h2>¿Qué quieres transmitir con este regalo?</h2>
         <p class="required">(Puede elegir hasta 2 opciones)</p>
                <div class="options-grid">
-          {["Profesionalismo", "Sustentabilidad", "No estoy seguro", "Innovación", "Exclusividad", "Regalos para clientes"].map((text) => (
+          {["Profesionalismo", "Sustentabilidad", "Innovación", "Exclusividad", "No estoy seguro"].map((text) => (
             <label class="option-card">
               <input type="checkbox" name="regalo" value={text} required/>
               <span class="custom-checkbox"></span> {text}
@@ -76,7 +77,7 @@ import Layout from '../layouts/Layout.astro';
           <label for="fecha">¿Para cuándo lo necesitas?*</label>
           <select name="fecha" id="fecha" required>
             <option value="" disabled selected>Seleccionar una opción</option>
-            <option value="uno">Urgente(menos de 2 semanas)</option>
+            <option value="uno">Urgente (menos de 2 semanas)</option>
             <option value="dos">2 - 4 semanas</option>
             <option value="tres">1 - 2 meses</option>
             <option value="cuatro">Explorando opciones</option>
@@ -263,7 +264,8 @@ import Layout from '../layouts/Layout.astro';
   limitCheckboxes('regalo', 2);
   limitCheckboxes('producto', 2);
 
-  // Inicialización
+// Inicialización
   updateUI();
 </script>
+
 </Layout>
