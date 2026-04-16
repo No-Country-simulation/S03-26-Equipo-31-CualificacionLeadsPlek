@@ -1,7 +1,12 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { Request, Response, NextFunction } from "express";
 import * as emailService from "./email.service";
 import { NotFoundError, ConflictError, ValidationError } from "./email.service";
 import type { CreateTemplateDto, SendEmailDto } from "./email.types";
+import { isValidEmail } from "../../shared/utils/validators";
 
 export async function createTemplate(
   req: Request,
@@ -50,6 +55,20 @@ export async function sendEmail(
 ): Promise<void> {
   try {
     const dto: SendEmailDto = req.body;
+
+    if (!dto.to || dto.to.length === 0) {
+      res.status(400).json({ error: "Debes especificar al menos un destinatario en 'to'" });
+      return;
+    }
+
+    const invalidEmails = dto.to.filter((addr) => !isValidEmail(addr));
+    if (invalidEmails.length > 0) {
+      res.status(400).json({
+        error: `Las siguientes direcciones no son válidas: ${invalidEmails.join(", ")}`,
+      });
+      return;
+    }
+
     const result = await emailService.sendEmail(dto);
     res.status(200).json(result);
   } catch (error) {

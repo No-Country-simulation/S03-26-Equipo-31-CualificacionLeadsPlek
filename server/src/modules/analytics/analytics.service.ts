@@ -1,11 +1,5 @@
 /**
- * @project No Country: S03-26-Equipo-31-CualificacionLeadsPlek backend
- * @author      [ developer: Andrés Segura, requirements-design: Lucas Matias Segovia ]
- * @version     1.0.0
- *
- * @requires    Node.js >=v24.13.1
- * @fileoverview
- * @see        https://github.com/No-Country-simulation/S03-26-Equipo-31-CualificacionLeadsPlek/tree/develop-backend/LICENCE.md
+ * @satisfies read file src/app.ts
  */
 
 import * as analyticsRepository from "./analytics.repository";

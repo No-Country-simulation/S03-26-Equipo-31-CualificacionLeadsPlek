@@ -1,7 +1,12 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { Request, Response, NextFunction } from "express";
 import * as leadsService from "./leads.service";
 import { NotFoundError, ConflictError, ValidationError } from "./leads.service";
 import type { CreateLeadDto, UpdateLeadStatusDto, LeadFilters } from "./leads.types";
+import { isValidEmail } from "../../shared/utils/validators";
 
 export async function createLead(
   req: Request,
@@ -16,6 +21,11 @@ export async function createLead(
       res.status(400).json({
         error: "Faltan campos requeridos: name, email, companyType, productType",
       });
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      res.status(400).json({ error: "El campo 'email' no tiene un formato válido" });
       return;
     }
 

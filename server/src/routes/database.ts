@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { Router, Request, Response } from "express";
 import { isConnected, connect } from "../config/db";
 

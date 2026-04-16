@@ -1,406 +1,939 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API Docs — CualificacionLeadsPlek</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0f1a0e; --surface: #182315; --surface2: #161824;
-      --border: #2d3148; --muted: #64748b; --text: #e2e8f0;
-      --text-dim: #94a3b8; --radius: 10px;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem 1rem; }
-    .container { max-width: 860px; margin: 0 auto; }
-    header { margin-bottom: 2rem; }
-    header h1 { font-size: 1.6rem; font-weight: 700; color: #f8fcf8; margin-bottom: .4rem; }
-    header h2 { font-size: 1.2rem; font-weight: 300; color: #f8fcf8; margin-bottom: .4rem; }
-    header p { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.3rem;color: #f8fcf8; }
-    .meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.8rem; }
-    .pill { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.75rem; font-size: 0.78rem; color: var(--text-dim); }
-    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 2rem 0 0.6rem 0.1rem; }
-    .endpoint { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.6rem; overflow: hidden; }
-    .ep-header { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.1rem; cursor: pointer; user-select: none; }
-    .ep-header:hover { background: #334736; } /* 1 */
-    .ep-summary { flex: 1; font-size: 0.88rem; color: var(--text-dim); }
-    .chevron { font-size: 0.65rem; color: var(--muted); transition: transform 0.2s; margin-left: auto; }
-    .open > .ep-header .chevron { transform: rotate(90deg); }
-    .ep-body { display: none; border-top: 1px solid var(--border); padding: 1.2rem 1.1rem; }
-    .open > .ep-body { display: block; }
-    .method { display: inline-block; padding: 0.18rem 0.55rem; border-radius: 5px; font-size: 0.72rem; font-weight: 700; font-family: monospace; white-space: nowrap; }
-    .method.GET    { background: #0c4a6e; color: #38bdf8; }
-    .method.POST   { background: #3b0764; color: #c084fc; }
-    .method.PATCH  { background: #431407; color: #fb923c; }
-    .method.DELETE { background: #450a0a; color: #f87171; }
-    code { font-family: 'Cascadia Code','Fira Code',monospace; font-size: 0.83rem; color: var(--text); }
-    .path-code { font-size: 0.9rem; }
-    .block-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.5rem; margin-top: 1.1rem; }
-    .block-label:first-child { margin-top: 0; }
-    .schema-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-    .schema-table th { text-align: left; color: var(--muted); font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); }
-    .schema-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid #1e2130; vertical-align: top; }
-    .schema-table tr:last-child td { border-bottom: none; }
-    .field-name { color: #93c5fd; font-family: monospace; }
-    .field-type { color: #6ee7b7; font-family: monospace; font-size: 0.78rem; }
-    .field-req  { color: #f87171; font-size: 0.72rem; }
-    .field-opt  { color: var(--muted); font-size: 0.72rem; }
-    .field-desc { color: var(--text-dim); }
-    .enum-val { display: inline-block; background: #1e293b; border: 1px solid #334155; border-radius: 4px; padding: 0.05rem 0.35rem; font-size: 0.72rem; font-family: monospace; color: #fbbf24; margin: 0.1rem 0.15rem 0.1rem 0; }
-    .responses { display: flex; flex-direction: column; gap: 0.4rem; }
-    .response-row { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.83rem; }
-    .status { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 5px; font-family: monospace; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
-    .s2 { background: #14532d; color: #4ade80; }
-    .s4 { background: #450a0a; color: #f87171; }
-    .response-desc { color: var(--text-dim); }
-    footer { margin-top: 2.5rem; font-size: 0.75rem; color: #475569; padding-bottom: 4rem; }
-    footer p { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.3rem;color: #f8fcf8; }
+
+    :root {
+      --bg: #0f1a0e;
+      --surface: #182315;
+      --surface2: #161824;
+      --border: #2d3148;
+      --muted: #64748b;
+      --text: #e2e8f0;
+      --text-dim: #94a3b8;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f8fcf8;
+      margin-bottom: .4rem;
+    }
+
+    header h2 {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #f8fcf8;
+      margin-bottom: .4rem;
+    }
+
+    header p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      color: #f8fcf8;
+    }
+
+    .meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 2rem 0 0.6rem 0.1rem;
+    }
+
+    .endpoint {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+    }
+
+    .ep-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .ep-header:hover {
+      background: #334736;
+    }
+
+    /* 1 */
+    .ep-summary {
+      flex: 1;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .chevron {
+      font-size: 0.65rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      margin-left: auto;
+    }
+
+    .open>.ep-header .chevron {
+      transform: rotate(90deg);
+    }
+
+    .ep-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 1.2rem 1.1rem;
+    }
+
+    .open>.ep-body {
+      display: block;
+    }
+
+    .method {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: monospace;
+      white-space: nowrap;
+    }
+
+    .method.GET {
+      background: #0c4a6e;
+      color: #38bdf8;
+    }
+
+    .method.POST {
+      background: #3b0764;
+      color: #c084fc;
+    }
+
+    .method.PATCH {
+      background: #431407;
+      color: #fb923c;
+    }
+
+    .method.DELETE {
+      background: #450a0a;
+      color: #f87171;
+    }
+
+    code {
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.83rem;
+      color: var(--text);
+    }
+
+    .path-code {
+      font-size: 0.9rem;
+    }
+
+    .block-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      margin-top: 1.1rem;
+    }
+
+    .block-label:first-child {
+      margin-top: 0;
+    }
+
+    .schema-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .schema-table th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .schema-table td {
+      padding: 0.45rem 0.6rem;
+      border-bottom: 1px solid #1e2130;
+      vertical-align: top;
+    }
+
+    .schema-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .field-name {
+      color: #93c5fd;
+      font-family: monospace;
+    }
+
+    .field-type {
+      color: #6ee7b7;
+      font-family: monospace;
+      font-size: 0.78rem;
+    }
+
+    .field-req {
+      color: #f87171;
+      font-size: 0.72rem;
+    }
+
+    .field-opt {
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .field-desc {
+      color: var(--text-dim);
+    }
+
+    .enum-val {
+      display: inline-block;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 4px;
+      padding: 0.05rem 0.35rem;
+      font-size: 0.72rem;
+      font-family: monospace;
+      color: #fbbf24;
+      margin: 0.1rem 0.15rem 0.1rem 0;
+    }
+
+    .responses {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .response-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.83rem;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .s2 {
+      background: #14532d;
+      color: #4ade80;
+    }
+
+    .s4 {
+      background: #450a0a;
+      color: #f87171;
+    }
+
+    .response-desc {
+      color: var(--text-dim);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #475569;
+      padding-bottom: 4rem;
+    }
+
+    footer p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      color: #f8fcf8;
+    }
+
     @media (max-width: 560px) {
-      .ep-summary { display: none; }
-      .schema-table th:last-child, .schema-table td:last-child { display: none; }
+      .ep-summary {
+        display: none;
+      }
+
+      .schema-table th:last-child,
+      .schema-table td:last-child {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
-  <header>
-    <h1>CualificacionLeadsPlek</h1>
-    <h2>Fully functional Demo API | MVP</h2>
-    <h2 style="font-weight: 600;">S03-26-Equipo-31-<strong  style="color: #40bb52; font-weight: 600;">CualificacionLeadsPlek</strong>  </h2>
-    <p>REST API — interactive reference</p>
-    <div class="meta">
-      <span class="pill">version 1.0.1</span>
-      <span class="pill">base url: https://s03-26-equipo-31-backend.vercel.app </span>
-      <span class="pill">JSON</span>
-    </div>
-  </header>
+    <header>
+      <h1>CualificacionLeadsPlek</h1>
+      <h2>Fully functional Demo API | MVP</h2>
+      <h2 style="font-weight: 600;">S03-26-Equipo-31-<strong
+          style="color: #40bb52; font-weight: 600;">CualificacionLeadsPlek</strong> </h2>
+      <p>REST API — interactive reference</p>
+      <div class="meta">
+        <span class="pill">version 1.0.2</span>
+        <span class="pill">base url: https://s03-26-equipo-31-backend.vercel.app </span>
+        <span class="pill">JSON</span>
+      </div>
+    </header>
 
-  <div class="section-label">Health</div>
+    <div class="section-label">Health</div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/health</code>
-      <span class="ep-summary">General API health check</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">API is running</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/health</code>
+        <span class="ep-summary">General API health check</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">API is running</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/database/health</code>
-      <span class="ep-summary">Database connectivity status</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc"><code>{ connected: boolean }</code></span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/database/health</code>
+        <span class="ep-summary">Database connectivity status</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span
+              class="response-desc"><code>{ connected: boolean }</code></span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method POST">POST</span>
-      <code class="path-code">/api/database/connect</code>
-      <span class="ep-summary">Retry database connection</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">Connection attempt result</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method POST">POST</span>
+        <code class="path-code">/api/database/connect</code>
+        <span class="ep-summary">Retry database connection</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">Connection attempt
+              result</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section-label">Leads</div>
+    <div class="section-label">MailerLite</div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method POST">POST</span>
-      <code class="path-code">/api/leads</code>
-      <span class="ep-summary">Create a new lead</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Request body — application/json</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">name</td><td class="field-type">string</td><td class="field-req">required</td><td class="field-desc">Full name of the lead</td></tr>
-          <tr><td class="field-name">email</td><td class="field-type">string</td><td class="field-req">required</td><td class="field-desc">Contact email address</td></tr>
-          <tr>
-            <td class="field-name">companyType</td><td class="field-type">enum</td><td class="field-req">required</td>
-            <td class="field-desc">
-              <span class="enum-val">startup</span><span class="enum-val">pyme</span><span class="enum-val">enterprise</span><span class="enum-val">freelance</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="field-name">productType</td><td class="field-type">enum</td><td class="field-req">required</td>
-            <td class="field-desc">
-              <span class="enum-val">saas</span><span class="enum-val">ecommerce</span><span class="enum-val">marketplace</span><span class="enum-val">other</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">201</span><span class="response-desc">Lead created — returns <code>LeadResponse</code></span></div>
-        <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing required fields</span></div>
-        <div class="response-row"><span class="status s4">409</span><span class="response-desc">Email already registered</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/mailer-provider/health</code>
+        <span class="ep-summary">MailerLite connectivity &amp; group status</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Description</div>
+        <p style="font-size:0.83rem;color:var(--text-dim);margin-bottom:1rem;">
+          Verifies that the MailerLite API key is configured and reachable. On success it also returns the list of
+          available subscriber groups.
+        </p>
+        <div class="block-label">Response schema — 200 ok</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th colspan="2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">status</td>
+              <td class="field-type">string</td>
+              <td colspan="2" class="field-desc"><span class="enum-val">ok</span></td>
+            </tr>
+            <tr>
+              <td class="field-name">provider</td>
+              <td class="field-type">string</td>
+              <td colspan="2" class="field-desc"><code>"MailerLite"</code></td>
+            </tr>
+            <tr>
+              <td class="field-name">checkedAt</td>
+              <td class="field-type">string (ISO 8601)</td>
+              <td colspan="2" class="field-desc">Timestamp of the check</td>
+            </tr>
+            <tr>
+              <td class="field-name">groups</td>
+              <td class="field-type">array</td>
+              <td colspan="2" class="field-desc">List of <code>{ id, name }</code> objects from MailerLite</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Response schema — 503 unreachable</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th colspan="2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">status</td>
+              <td class="field-type">string</td>
+              <td colspan="2" class="field-desc"><span class="enum-val">unreachable</span></td>
+            </tr>
+            <tr>
+              <td class="field-name">provider</td>
+              <td class="field-type">string</td>
+              <td colspan="2" class="field-desc"><code>"MailerLite"</code></td>
+            </tr>
+            <tr>
+              <td class="field-name">checkedAt</td>
+              <td class="field-type">string (ISO 8601)</td>
+              <td colspan="2" class="field-desc">Timestamp of the check</td>
+            </tr>
+            <tr>
+              <td class="field-name">error</td>
+              <td class="field-type">string</td>
+              <td colspan="2" class="field-desc">Reason for failure (missing key or API error)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">MailerLite is
+              reachable — groups list included</span></div>
+          <div class="response-row"><span class="status s4">503</span><span class="response-desc">API key missing or
+              MailerLite unreachable</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/leads</code>
-      <span class="ep-summary">List all leads</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Query parameters</div>
-      <table class="schema-table">
-        <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td class="field-name">status</td><td class="field-type">enum</td><td class="field-opt">optional</td>
-            <td class="field-desc">
-              <span class="enum-val">lead</span><span class="enum-val">contacted</span><span class="enum-val">qualified</span><span class="enum-val">converted</span><span class="enum-val">lost</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="field-name">companyType</td><td class="field-type">enum</td><td class="field-opt">optional</td>
-            <td class="field-desc">
-              <span class="enum-val">startup</span><span class="enum-val">pyme</span><span class="enum-val">enterprise</span><span class="enum-val">freelance</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">Array of <code>LeadResponse</code></span></div>
+    <div class="section-label">Leads</div>
+
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method POST">POST</span>
+        <code class="path-code">/api/leads</code>
+        <span class="ep-summary">Create a new lead</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Request body — application/json</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">name</td>
+              <td class="field-type">string</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Full name of the lead</td>
+            </tr>
+            <tr>
+              <td class="field-name">email</td>
+              <td class="field-type">string</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Contact email address</td>
+            </tr>
+            <tr>
+              <td class="field-name">companyType</td>
+              <td class="field-type">enum</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">
+                <span class="enum-val">startup</span><span class="enum-val">pyme</span><span
+                  class="enum-val">enterprise</span><span class="enum-val">freelance</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="field-name">productType</td>
+              <td class="field-type">enum</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">
+                <span class="enum-val">saas</span><span class="enum-val">ecommerce</span><span
+                  class="enum-val">marketplace</span><span class="enum-val">other</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">201</span><span class="response-desc">Lead created — returns
+              <code>LeadResponse</code></span></div>
+          <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing required
+              fields</span></div>
+          <div class="response-row"><span class="status s4">409</span><span class="response-desc">Email already
+              registered</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/leads/:id</code>
-      <span class="ep-summary">Get a lead by ID</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Path parameters</div>
-      <table class="schema-table">
-        <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">id</td><td class="field-type">string (UUID)</td><td class="field-req">required</td><td class="field-desc">Lead identifier</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc"><code>LeadResponse</code></span></div>
-        <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/leads</code>
+        <span class="ep-summary">List all leads</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Query parameters</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Param</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">status</td>
+              <td class="field-type">enum</td>
+              <td class="field-opt">optional</td>
+              <td class="field-desc">
+                <span class="enum-val">lead</span><span class="enum-val">contacted</span><span
+                  class="enum-val">qualified</span><span class="enum-val">converted</span><span
+                  class="enum-val">lost</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="field-name">companyType</td>
+              <td class="field-type">enum</td>
+              <td class="field-opt">optional</td>
+              <td class="field-desc">
+                <span class="enum-val">startup</span><span class="enum-val">pyme</span><span
+                  class="enum-val">enterprise</span><span class="enum-val">freelance</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">Array of
+              <code>LeadResponse</code></span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method PATCH">PATCH</span>
-      <code class="path-code">/api/leads/:id</code>
-      <span class="ep-summary">Update lead status</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Path parameters</div>
-      <table class="schema-table">
-        <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">id</td><td class="field-type">string (UUID)</td><td class="field-req">required</td><td class="field-desc">Lead identifier</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Request body — application/json</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td class="field-name">status</td><td class="field-type">enum</td><td class="field-req">required</td>
-            <td class="field-desc">
-              <span class="enum-val">lead</span><span class="enum-val">contacted</span><span class="enum-val">qualified</span><span class="enum-val">converted</span><span class="enum-val">lost</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">Updated <code>LeadResponse</code></span></div>
-        <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing status field</span></div>
-        <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span></div>
-        <div class="response-row"><span class="status s4">422</span><span class="response-desc">Invalid status transition</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/leads/:id</code>
+        <span class="ep-summary">Get a lead by ID</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Path parameters</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Param</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">id</td>
+              <td class="field-type">string (UUID)</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Lead identifier</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span
+              class="response-desc"><code>LeadResponse</code></span></div>
+          <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method DELETE">DELETE</span>
-      <code class="path-code">/api/leads/:id</code>
-      <span class="ep-summary">Delete a lead</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Path parameters</div>
-      <table class="schema-table">
-        <thead><tr><th>Param</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">id</td><td class="field-type">string (UUID)</td><td class="field-req">required</td><td class="field-desc">Lead identifier</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc"><code>{ message: string, lead: LeadResponse }</code></span></div>
-        <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method PATCH">PATCH</span>
+        <code class="path-code">/api/leads/:id</code>
+        <span class="ep-summary">Update lead status</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Path parameters</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Param</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">id</td>
+              <td class="field-type">string (UUID)</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Lead identifier</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Request body — application/json</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">status</td>
+              <td class="field-type">enum</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">
+                <span class="enum-val">lead</span><span class="enum-val">contacted</span><span
+                  class="enum-val">qualified</span><span class="enum-val">converted</span><span
+                  class="enum-val">lost</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">Updated
+              <code>LeadResponse</code></span></div>
+          <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing status
+              field</span></div>
+          <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span>
+          </div>
+          <div class="response-row"><span class="status s4">422</span><span class="response-desc">Invalid status
+              transition</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="section-label">Analytics</div>
-
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method POST">POST</span>
-      <code class="path-code">/api/analytics/visit</code>
-      <span class="ep-summary">Register a visit</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Request body — application/json</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">source</td><td class="field-type">string</td><td class="field-opt">optional</td><td class="field-desc">Traffic source (e.g. <code>facebook</code>)</td></tr>
-          <tr><td class="field-name">campaign</td><td class="field-type">string</td><td class="field-opt">optional</td><td class="field-desc">Campaign identifier</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">201</span><span class="response-desc">Visit registered</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method DELETE">DELETE</span>
+        <code class="path-code">/api/leads/:id</code>
+        <span class="ep-summary">Delete a lead</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Path parameters</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Param</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">id</td>
+              <td class="field-type">string (UUID)</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Lead identifier</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span
+              class="response-desc"><code>{ message: string, lead: LeadResponse }</code></span></div>
+          <div class="response-row"><span class="status s4">404</span><span class="response-desc">Lead not found</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/analytics/summary</code>
-      <span class="ep-summary">Get analytics summary</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Response schema — 200</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th colspan="2">Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">visits</td><td class="field-type">number</td><td colspan="2" class="field-desc">Total visit count</td></tr>
-          <tr><td class="field-name">leads</td><td class="field-type">number</td><td colspan="2" class="field-desc">Total leads created</td></tr>
-          <tr><td class="field-name">conversions</td><td class="field-type">number</td><td colspan="2" class="field-desc">Leads with status <code>converted</code></td></tr>
-          <tr><td class="field-name">conversionRate</td><td class="field-type">number</td><td colspan="2" class="field-desc">Ratio of conversions to leads</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <div class="section-label">Analytics</div>
 
-  <div class="section-label">Email</div>
-
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method POST">POST</span>
-      <code class="path-code">/api/emails/templates</code>
-      <span class="ep-summary">Create an email template</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Request body — application/json</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">name</td><td class="field-type">string</td><td class="field-req">required</td><td class="field-desc">Unique template name</td></tr>
-          <tr><td class="field-name">subject</td><td class="field-type">string</td><td class="field-req">required</td><td class="field-desc">Email subject line</td></tr>
-          <tr><td class="field-name">body</td><td class="field-type">string (HTML)</td><td class="field-req">required</td><td class="field-desc">HTML body of the email</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">201</span><span class="response-desc">Template created — returns <code>TemplateResponse</code></span></div>
-        <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing required fields</span></div>
-        <div class="response-row"><span class="status s4">409</span><span class="response-desc">Template name already exists</span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method POST">POST</span>
+        <code class="path-code">/api/analytics/visit</code>
+        <span class="ep-summary">Register a visit</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Request body — application/json</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">source</td>
+              <td class="field-type">string</td>
+              <td class="field-opt">optional</td>
+              <td class="field-desc">Traffic source (e.g. <code>facebook</code>)</td>
+            </tr>
+            <tr>
+              <td class="field-name">campaign</td>
+              <td class="field-type">string</td>
+              <td class="field-opt">optional</td>
+              <td class="field-desc">Campaign identifier</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">201</span><span class="response-desc">Visit
+              registered</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method GET">GET</span>
-      <code class="path-code">/api/emails/templates</code>
-      <span class="ep-summary">List all email templates</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">Array of <code>TemplateResponse</code></span></div>
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/analytics/summary</code>
+        <span class="ep-summary">Get analytics summary</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Response schema — 200</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th colspan="2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">visits</td>
+              <td class="field-type">number</td>
+              <td colspan="2" class="field-desc">Total visit count</td>
+            </tr>
+            <tr>
+              <td class="field-name">leads</td>
+              <td class="field-type">number</td>
+              <td colspan="2" class="field-desc">Total leads created</td>
+            </tr>
+            <tr>
+              <td class="field-name">conversions</td>
+              <td class="field-type">number</td>
+              <td colspan="2" class="field-desc">Leads with status <code>converted</code></td>
+            </tr>
+            <tr>
+              <td class="field-name">conversionRate</td>
+              <td class="field-type">number</td>
+              <td colspan="2" class="field-desc">Ratio of conversions to leads</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
 
-  <div class="endpoint">
-    <div class="ep-header" onclick="toggle(this.parentElement)">
-      <span class="method POST">POST</span>
-      <code class="path-code">/api/emails/send</code>
-      <span class="ep-summary">Send an email using a template</span>
-      <span class="chevron">▶</span>
-    </div>
-    <div class="ep-body">
-      <div class="block-label">Request body — application/json</div>
-      <table class="schema-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td class="field-name">templateId</td><td class="field-type">string (UUID)</td><td class="field-req">required</td><td class="field-desc">ID of the template to use</td></tr>
-          <tr><td class="field-name">to</td><td class="field-type">string[]</td><td class="field-req">required</td><td class="field-desc">List of recipient email addresses</td></tr>
-        </tbody>
-      </table>
-      <div class="block-label">Responses</div>
-      <div class="responses">
-        <div class="response-row"><span class="status s2">200</span><span class="response-desc">Email sent successfully</span></div>
-        <div class="response-row"><span class="status s4">404</span><span class="response-desc">Template not found</span></div>
-        <div class="response-row"><span class="status s4">422</span><span class="response-desc">Invalid recipient list</span></div>
+    <div class="section-label">Email</div>
+
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method POST">POST</span>
+        <code class="path-code">/api/emails/templates</code>
+        <span class="ep-summary">Create an email template</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Request body — application/json</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">name</td>
+              <td class="field-type">string</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Unique template name</td>
+            </tr>
+            <tr>
+              <td class="field-name">subject</td>
+              <td class="field-type">string</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">Email subject line</td>
+            </tr>
+            <tr>
+              <td class="field-name">body</td>
+              <td class="field-type">string (HTML)</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">HTML body of the email</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">201</span><span class="response-desc">Template created —
+              returns <code>TemplateResponse</code></span></div>
+          <div class="response-row"><span class="status s4">400</span><span class="response-desc">Missing required
+              fields</span></div>
+          <div class="response-row"><span class="status s4">409</span><span class="response-desc">Template name already
+              exists</span></div>
+        </div>
       </div>
     </div>
+
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method GET">GET</span>
+        <code class="path-code">/api/emails/templates</code>
+        <span class="ep-summary">List all email templates</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">Array of
+              <code>TemplateResponse</code></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoint">
+      <div class="ep-header" onclick="toggle(this.parentElement)">
+        <span class="method POST">POST</span>
+        <code class="path-code">/api/emails/send</code>
+        <span class="ep-summary">Send an email using a template</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="ep-body">
+        <div class="block-label">Request body — application/json</div>
+        <table class="schema-table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Required</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="field-name">templateId</td>
+              <td class="field-type">string (UUID)</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">ID of the template to use</td>
+            </tr>
+            <tr>
+              <td class="field-name">to</td>
+              <td class="field-type">string[]</td>
+              <td class="field-req">required</td>
+              <td class="field-desc">List of recipient email addresses</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="block-label">Responses</div>
+        <div class="responses">
+          <div class="response-row"><span class="status s2">200</span><span class="response-desc">Email sent
+              successfully</span></div>
+          <div class="response-row"><span class="status s4">404</span><span class="response-desc">Template not
+              found</span></div>
+          <div class="response-row"><span class="status s4">422</span><span class="response-desc">Invalid recipient
+              list</span></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p> CualificacionLeadsPlek API &mdash; v1.0.2 </p>
+      <p><b>Andrés Segura</b> - Backend developer</p>
+    </footer>
+
   </div>
-
-  <footer>
-    <p> CualificacionLeadsPlek API &mdash; v1.0.1 </p>
-  </footer>
-
-</div>
-<script>
-  function toggle(el) {
-    el.classList.toggle('open');
-  }
-</script>
+  <script>
+    function toggle(el) {
+      el.classList.toggle('open');
+    }
+  </script>
 </body>
+
 </html>

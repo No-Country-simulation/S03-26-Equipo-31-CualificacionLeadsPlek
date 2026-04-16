@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { eq, and } from "drizzle-orm";
 import { getDb } from "../../config/db";
 import { leads, events } from "../../shared/database/schema";

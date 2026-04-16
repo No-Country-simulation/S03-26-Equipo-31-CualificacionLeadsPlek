@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import * as emailRepository from "./email.repository";
 import type { CreateTemplateDto, SendEmailDto } from "./email.types";
 

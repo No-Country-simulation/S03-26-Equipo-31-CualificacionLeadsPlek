@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 export interface CreateTemplateDto {
   name: string;
   subject: string;
