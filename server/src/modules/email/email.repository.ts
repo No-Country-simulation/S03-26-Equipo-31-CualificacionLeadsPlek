@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { eq } from "drizzle-orm";
 import { emailTemplates } from "../../shared/database/schema";
 import type { CreateTemplateDto } from "./email.types";

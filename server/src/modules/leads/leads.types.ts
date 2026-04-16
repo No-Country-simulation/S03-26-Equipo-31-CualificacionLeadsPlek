@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 export type LeadStatus = "lead" | "contacted" | "qualified" | "converted" | "lost";
 export type CompanyType = "startup" | "pyme" | "enterprise" | "freelance";
 export type ProductType = "saas" | "ecommerce" | "marketplace" | "other";

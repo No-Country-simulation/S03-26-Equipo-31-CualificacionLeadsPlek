@@ -1,4 +1,6 @@
-
+/**
+ * @satisfies read file src/app.ts
+ */
 
 import { Router } from "express";
 import * as analyticsController from "./analytics.controller";

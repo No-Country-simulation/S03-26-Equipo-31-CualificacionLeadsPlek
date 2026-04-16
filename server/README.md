@@ -1,8 +1,8 @@
-# CualificacionLeadsPlek API
+# CualificacionLeadsPlek API | Demo MVP
 
 Backend REST API for lead qualification, analytics tracking, and email template management.
 
-- Version: 1.0.1
+- Version: 1.0.2
 - Content-Type: `application/json`
 
 ---
@@ -35,10 +35,56 @@ Requeriments design
 
 ```bash
 npm install
-cp .env.example .env   # fill in your DB credentials
+cp .env.example .env   # fill in your DB credentials and MailerLite API key
 npm run db:push        # sync schema to DB
+npm run db:seed        # insert initial data
 npm run dev            # start dev server
 ```
+
+---
+
+## MailerLite Integration
+
+This API automatically syncs leads to MailerLite at two points in the lead lifecycle:
+
+- `POST /api/leads` — subscriber is created/updated and added to the "Stage 0 - New Lead" group
+- `PATCH /api/leads/:id` with `{ "status": "converted" }` — subscriber is moved to the "Converted" group
+
+The sync is non-blocking: if MailerLite is unreachable, the local operation still succeeds and the error is logged server-side.
+
+---
+
+Required env variable:
+
+```
+MAILERLITE_API_KEY=your_mailerlite_api_key_here
+```
+
+The MailerLite groups used are resolved by name at runtime:
+
+| Group name          | Trigger                        |
+|---------------------|--------------------------------|
+| Stage 0 - New Lead  | New lead created               |
+| Converted           | Lead status set to `converted` |
+
+Each response from `POST /api/leads` and `PATCH /api/leads/:id` (on conversion) includes a `mailerLite` log object:
+
+```json
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "status": "lead",
+  "mailerLite": {
+    "success": true,
+    "subscriberId": "ml-subscriber-id",
+    "groupId": "ml-group-id",
+    "error": null
+  }
+}
+```
+
+If the sync fails, `success` will be `false` and `error` will contain the reason — the lead is still saved locally.
 
 ---
 
@@ -284,4 +330,5 @@ Response `200`:
 
 ---
 
-Deploy vercel: [**s03-26-equipo-31-backend.vercel.app**](https://s03-26-equipo-31-backend.vercel.app/)
+Vercel deploy: [**s03-26-equipo-31-backend.vercel.app**](https://s03-26-equipo-31-backend.vercel.app/)
+

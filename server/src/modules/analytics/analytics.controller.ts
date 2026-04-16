@@ -1,3 +1,6 @@
+/**
+ * @satisfies read file src/app.ts
+ */
 
 import { Request, Response, NextFunction } from "express";
 import * as analyticsService from "./analytics.service";

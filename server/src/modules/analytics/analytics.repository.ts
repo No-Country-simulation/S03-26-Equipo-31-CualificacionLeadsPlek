@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import { visits, leads } from "../../shared/database/schema";
 import { eq, count } from "drizzle-orm";
 import type { RegisterVisitDto } from "./analytics.types";

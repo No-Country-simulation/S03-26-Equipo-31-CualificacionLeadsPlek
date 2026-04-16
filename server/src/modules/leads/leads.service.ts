@@ -1,3 +1,7 @@
+/**
+ * @satisfies read file src/app.ts
+ */
+
 import * as leadsRepository from "./leads.repository";
 import { VALID_TRANSITIONS } from "./leads.types";
 import type {
@@ -5,6 +9,11 @@ import type {
   UpdateLeadStatusDto,
   LeadFilters,
 } from "./leads.types";
+import {
+  syncLeadToMailerLite,
+  GROUP_NEW_LEAD,
+  GROUP_CONVERTED,
+} from "../mailerlite/mailerlite.service";
 
 export async function createLead(data: CreateLeadDto) {
   const existing = await leadsRepository.findLeadByEmail(data.email);
@@ -20,7 +29,20 @@ export async function createLead(data: CreateLeadDto) {
     productType: lead.productType,
   });
 
-  return lead;
+  // Sync to MailerLite — non-blocking, failure is logged but does not throw
+  const mailerLiteLog = await syncLeadToMailerLite({
+    email:     lead.email,
+    name:      lead.name,
+    groupName: GROUP_NEW_LEAD,
+  });
+
+  if (mailerLiteLog.success) {
+    console.log(
+      `[MailerLite] Lead synced → subscriberId: ${mailerLiteLog.subscriberId}, groupId: ${mailerLiteLog.groupId}`
+    );
+  }
+
+  return { ...lead, mailerLite: mailerLiteLog };
 }
 
 export async function getAllLeads(filters: LeadFilters = {}) {
@@ -56,6 +78,23 @@ export async function updateLeadStatus(id: string, dto: UpdateLeadStatusDto) {
     previousStatus: lead.status,
     newStatus:      dto.status,
   });
+
+  // When a lead converts, move them to the Converted group in MailerLite
+  if (dto.status === "converted") {
+    const mailerLiteLog = await syncLeadToMailerLite({
+      email:     lead.email,
+      name:      lead.name,
+      groupName: GROUP_CONVERTED,
+    });
+
+    if (mailerLiteLog.success) {
+      console.log(
+        `[MailerLite] Converted lead synced → subscriberId: ${mailerLiteLog.subscriberId}, groupId: ${mailerLiteLog.groupId}`
+      );
+    }
+
+    return { ...updated, mailerLite: mailerLiteLog };
+  }
 
   return updated;
 }
